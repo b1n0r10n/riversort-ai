@@ -1,0 +1,61 @@
+{
+  "capability_profile_id": "riversort_plastic4_mvp",
+  "confidence_threshold": 0.4,
+  "evaluation": {
+    "false_positives_per_image": 0.42272727272727273,
+    "images": 440,
+    "mAP50": 0.6936396962555579,
+    "macro_f1": 0.6903599418904909,
+    "matching_iou": 0.5,
+    "missed_objects_per_image": 0.5272727272727272,
+    "per_class": {
+      "0": {
+        "name": "plastic_bottle",
+        "ap50": 0.8801684711605829,
+        "precision": 0.8535031847133758,
+        "recall": 0.8481012658227848
+      },
+      "1": {
+        "name": "plastic_bag",
+        "ap50": 0.7113494689330916,
+        "precision": 0.7777777777777778,
+        "recall": 0.6487804878048781
+      },
+      "2": {
+        "name": "plastic_packaging_sachet",
+        "ap50": 0.8155729918992516,
+        "precision": 0.724907063197026,
+        "recall": 0.7959183673469388
+      },
+      "3": {
+        "name": "other_plastic",
+        "ap50": 0.36746785302930546,
+        "precision": 0.5625,
+        "recall": 0.3673469387755102
+      }
+    },
+    "split": "held_out_test",
+    "threshold_selected_on": "validation"
+  },
+  "experiment_id": "riversort-yolo11n-fpwr4-20260722-r2-baseline1",
+  "latency_batch1": {
+    "benchmark_images": 100,
+    "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU 6 GB",
+    "median_ms": 6.480981000095198,
+    "p90_ms": 6.763532200966438,
+    "warmup_images": 20
+  },
+  "model_version": "0.1.0-baseline.1",
+  "snapshot_id": "riversort_fpwr4-20260722-r2",
+  "snapshot_tree_sha256_v1": "74badb41175aacef724f6b2c4db722ce46dcd6875546f9035472d60e46690b2c",
+  "supported_classes": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "unsupported_target_classes": [
+    4
+  ],
+  "weight_sha256": "cc235703c6b8b9f6244e68145ca82fea115c95526b91e5716468c3f2d2c31235"
+}

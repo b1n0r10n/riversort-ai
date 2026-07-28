@@ -1,0 +1,17 @@
+config_version: 1.2.0
+status: configured
+capability_profile_id: riversort_plastic4_mvp
+model_version: 0.1.0-baseline.1
+model_sha256: cc235703c6b8b9f6244e68145ca82fea115c95526b91e5716468c3f2d2c31235
+dataset_snapshot_id: riversort_fpwr4-20260722-r2
+dataset_snapshot_sha256: 74badb41175aacef724f6b2c4db722ce46dcd6875546f9035472d60e46690b2c
+model_path_env: RIVERSORT_MODEL_PATH
+package_manifest_filename: package.json
+names:
+  0: plastic_bottle
+  1: plastic_bag
+  2: plastic_packaging_sachet
+  3: other_plastic
+confidence_threshold: 0.40
+iou_threshold: 0.50
+inference_imgsz: 960

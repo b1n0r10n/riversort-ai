@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Arsitektur modular monolith RiverSort AI</title>
+  <desc id="desc">Diagram empat lapis dari pengguna dan Streamlit, application services, domain, hingga adapter dan infrastruktur.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#155e75"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <text x="90" y="82" font-family="DejaVu Sans, Arial" font-size="42" font-weight="700" fill="#0f172a">Arsitektur RiverSort AI</text>
+  <text x="90" y="125" font-family="DejaVu Sans, Arial" font-size="22" fill="#475569">Satu aplikasi lokal, dipisahkan menurut tanggung jawab agar mudah diuji dan dirawat.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="90" y="180" width="1420" height="118" rx="20" fill="#ecfeff" stroke="#0891b2" stroke-width="3"/>
+    <rect x="90" y="338" width="1420" height="118" rx="20" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+    <rect x="90" y="496" width="1420" height="118" rx="20" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+    <rect x="90" y="654" width="1420" height="150" rx="20" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
+  </g>
+
+  <text x="130" y="222" font-family="DejaVu Sans, Arial" font-size="20" font-weight="700" fill="#0e7490">PRESENTATION</text>
+  <text x="130" y="265" font-family="DejaVu Sans, Arial" font-size="30" font-weight="700" fill="#0f172a">Pengguna → Dashboard Streamlit</text>
+  <text x="720" y="265" font-family="DejaVu Sans, Arial" font-size="22" fill="#334155">Upload media · metadata · preview · grafik · download</text>
+
+  <text x="130" y="380" font-family="DejaVu Sans, Arial" font-size="20" font-weight="700" fill="#1d4ed8">APPLICATION</text>
+  <text x="130" y="423" font-family="DejaVu Sans, Arial" font-size="30" font-weight="700" fill="#0f172a">AnalyzeImage / AnalyzeVideo</text>
+  <text x="720" y="423" font-family="DejaVu Sans, Arial" font-size="22" fill="#334155">Mengatur validasi → inference → agregasi → export</text>
+
+  <text x="130" y="538" font-family="DejaVu Sans, Arial" font-size="20" font-weight="700" fill="#15803d">DOMAIN</text>
+  <text x="130" y="581" font-family="DejaVu Sans, Arial" font-size="30" font-weight="700" fill="#0f172a">Kontrak dan perhitungan murni</text>
+  <text x="720" y="581" font-family="DejaVu Sans, Arial" font-size="22" fill="#334155">Komposisi · coverage · priority · rule · quality flag</text>
+
+  <text x="130" y="696" font-family="DejaVu Sans, Arial" font-size="20" font-weight="700" fill="#c2410c">ADAPTERS &amp; INFRASTRUCTURE</text>
+  <text x="130" y="742" font-family="DejaVu Sans, Arial" font-size="29" font-weight="700" fill="#0f172a">YOLO · ByteTrack · OpenCV · FFmpeg</text>
+  <text x="130" y="779" font-family="DejaVu Sans, Arial" font-size="22" fill="#334155">Config terversi · temporary workspace · logging · JSON/CSV</text>
+  <text x="1090" y="730" font-family="DejaVu Sans, Arial" font-size="20" font-weight="700" fill="#9a3412">LOCAL / OFFLINE</text>
+  <text x="1090" y="770" font-family="DejaVu Sans, Arial" font-size="20" fill="#475569">Weight &amp; media tetap di laptop</text>
+
+  <path d="M800 300 L800 330" stroke="#155e75" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M800 458 L800 488" stroke="#155e75" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M800 616 L800 646" stroke="#155e75" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <text x="90" y="856" font-family="DejaVu Sans, Arial" font-size="18" fill="#64748b">Prinsip dependensi: UI memanggil application service; rumus domain tidak mengimpor framework computer vision.</text>
+</svg>
+

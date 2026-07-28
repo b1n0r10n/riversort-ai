@@ -1,0 +1,14 @@
+config_version: 1.0.0
+target_taxonomy_version: 1.0.0
+target_classes:
+  - {id: 0, name: plastic_bottle}
+  - {id: 1, name: plastic_bag}
+  - {id: 2, name: plastic_packaging_sachet}
+  - {id: 3, name: other_plastic}
+  - {id: 4, name: other_floating_debris}
+profiles:
+  - profile_id: riversort_plastic4_mvp
+    profile_version: 1.0.0
+    supported_class_ids: [0, 1, 2, 3]
+    unsupported_target_class_ids: [4]
+

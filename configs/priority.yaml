@@ -1,0 +1,20 @@
+config_version: 1.1.0
+applicable_profiles: [riversort_plastic4_mvp]
+scope: supported_classes_only
+weights:
+  coverage: 0.55
+  count: 0.30
+  mobility: 0.15
+normalization:
+  coverage_p90_cap: 0.20
+  image_object_count_cap: 20
+  video_tracks_per_minute_cap: 30
+mobility_class_ids: [1, 2]
+tiers:
+  - {name: low, minimum: 0, maximum: 34}
+  - {name: medium, minimum: 35, maximum: 69}
+  - {name: high, minimum: 70, maximum: 100}
+residual_override:
+  enabled: false
+  class_id: 4
+  threshold: 0.30

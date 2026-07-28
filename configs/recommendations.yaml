@@ -1,0 +1,57 @@
+config_version: 1.1.0
+rules:
+  - rule_id: R_BAG_FINE_NET
+    priority: 10
+    class_id: 1
+    metric: object_count_share
+    operator: ">"
+    threshold: 0.35
+    applicable_profiles: [riversort_plastic4_mvp]
+    reason: Kantong plastik mendominasi komposisi objek unik yang didukung model.
+    action: Pertimbangkan jaring halus dan perhatikan titik penyempitan aliran.
+  - rule_id: R_BOTTLE_SORT_PET
+    priority: 20
+    class_id: 0
+    metric: object_count_share
+    operator: ">"
+    threshold: 0.30
+    applicable_profiles: [riversort_plastic4_mvp]
+    reason: Botol plastik memiliki proporsi tinggi pada objek unik yang didukung model.
+    action: Prioritaskan pemilahan PET dan koordinasi dengan bank sampah setempat.
+  - rule_id: R_SACHET_SMALL_MESH
+    priority: 30
+    class_id: 2
+    metric: object_count_share
+    operator: ">"
+    threshold: 0.30
+    applicable_profiles: [riversort_plastic4_mvp]
+    reason: Kemasan saset memiliki proporsi tinggi pada objek unik yang didukung model.
+    action: Pertimbangkan penyaring berpori kecil dan telusuri sumber sampah domestik.
+  - rule_id: R_OTHER_PLASTIC_MANUAL_SORT
+    priority: 40
+    class_id: 3
+    metric: object_count_share
+    operator: ">"
+    threshold: 0.30
+    applicable_profiles: [riversort_plastic4_mvp]
+    reason: Plastik lain memiliki proporsi tinggi dan membutuhkan pemilahan lebih lanjut.
+    action: Lakukan pemilahan manual dan tandai kandidat untuk anotasi ulang.
+  - rule_id: R_DEBRIS_MANUAL_REVIEW
+    priority: 50
+    class_id: 4
+    metric: object_count_share
+    operator: ">="
+    threshold: 0.30
+    applicable_profiles: [riversort_floating5_future]
+    reason: Debris mengambang lain membutuhkan inspeksi manual.
+    action: Lakukan inspeksi manual tanpa menebak material.
+  - rule_id: R_NO_ASSESSMENT
+    priority: 100
+    class_id: null
+    metric: valid_object_count
+    operator: "=="
+    threshold: 0
+    applicable_profiles: [riversort_plastic4_mvp]
+    reason: Tidak ada objek valid dari kelas yang didukung untuk dinilai.
+    action: Tinjau kualitas media dan lakukan verifikasi manusia; jangan menyimpulkan sungai bersih.
+

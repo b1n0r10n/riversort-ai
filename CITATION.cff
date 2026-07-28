@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use RiverSort AI, please cite this software."
+title: "RiverSort AI"
+type: software
+version: 0.1.0
+date-released: 2026-07-28
+authors:
+  - family-names: "Junjunan"
+    given-names: "Bintang Akalla"
+  - family-names: "Setiawati"
+    given-names: "Nisa"
+repository-code: "https://github.com/b1n0r10n/riversort-ai"
+url: "https://github.com/b1n0r10n/riversort-ai"
+license: "AGPL-3.0-or-later"
+keywords:
+  - computer vision
+  - river waste
+  - object detection
+  - object tracking
+  - decision support

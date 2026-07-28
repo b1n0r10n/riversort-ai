@@ -1,0 +1,41 @@
+{
+  "audit": {
+    "accepted_images_in_queue": 785,
+    "contact_sheet_pages": 33,
+    "dhash_candidate_edges": 530,
+    "dhash_candidate_groups": 36,
+    "dhash_candidate_images": 185,
+    "overflow_boxes_clamped": 135,
+    "overflow_label_files": 117,
+    "rejected_images": 0,
+    "sequence_candidate_edges": 2153
+  },
+  "classes": {
+    "0": "plastic_bottle",
+    "1": "plastic_bag",
+    "2": "plastic_packaging_sachet",
+    "3": "other_plastic"
+  },
+  "images": 2824,
+  "instances": 5761,
+  "limitations": [
+    "Single-source FPWR bias",
+    "No negative samples",
+    "Dense scenes may contain unlabeled objects",
+    "Target class other_floating_debris is not_supported"
+  ],
+  "snapshot_id": "riversort_fpwr4-20260722-r2",
+  "snapshot_tree_sha256_v1": "74badb41175aacef724f6b2c4db722ce46dcd6875546f9035472d60e46690b2c",
+  "source_tree_sha256_v1": "ef3088f274d47717434b160e07e2ff87091606755535dc24564d7575b69ed0f9",
+  "split": {
+    "group_count": 1635,
+    "group_leakage": 0,
+    "images": {"test": 440, "train": 1947, "val": 437},
+    "seed": 42,
+    "split_manifest_sha256": "cff0ffb25b11b7b76653db44da242d9a9c8a87ba9f5d27461c401fbe8dcb69d1"
+  },
+  "supersedes": "riversort_fpwr4-20260722-r1",
+  "supersession_reason": "Remove ambiguous dataset.yaml path field after Ultralytics smoke-training failure",
+  "supported_classes": [0, 1, 2, 3],
+  "unsupported_target_classes": [4]
+}

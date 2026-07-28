@@ -1,0 +1,18 @@
+config_version: 1.1.0
+image:
+  allowed_extensions: [".jpg", ".jpeg", ".png"]
+  allowed_mime_types: ["image/jpeg", "image/png"]
+  max_bytes: 20971520
+  max_pixels: 25000000
+  max_source_pixels: 80000000
+video:
+  allowed_extensions: [".mp4"]
+  allowed_mime_types: ["video/mp4"]
+  allowed_codecs: ["h264"]
+  max_bytes: 209715200
+  max_duration_seconds: 60.0
+  max_width: 1920
+  max_height: 1080
+  max_source_pixels: 33177600
+  max_source_dimension: 7680
+  max_decode_failure_ratio: 0.05

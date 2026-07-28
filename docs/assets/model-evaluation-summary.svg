@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Ringkasan validasi lokal stabilitas RiverSort AI</title>
+  <desc id="desc">Perbandingan baseline dengan kandidat inference 960 dan tracking dua tahap pada empat media lokal.</desc>
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <text x="80" y="80" font-family="DejaVu Sans, Arial" font-size="42" font-weight="700" fill="#0f172a">Validasi lokal setelah perbaikan</text>
+  <text x="80" y="122" font-family="DejaVu Sans, Arial" font-size="21" fill="#475569">Model weight dan confidence 0,40 tetap; perubahan: inference 960 + preview video dua tahap.</text>
+
+  <g font-family="DejaVu Sans, Arial">
+    <rect x="80" y="175" width="700" height="210" rx="22" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+    <text x="115" y="220" font-size="23" font-weight="700" fill="#1d4ed8">GAMBAR PEXELS</text>
+    <text x="115" y="275" font-size="34" font-weight="700" fill="#0f172a">3 → 4 botol terdeteksi</text>
+    <text x="115" y="320" font-size="20" fill="#334155">Objek tambahan dinilai nyata; setidaknya satu objek kecil</text>
+    <text x="115" y="350" font-size="20" fill="#334155">masih terlewat.</text>
+
+    <rect x="820" y="175" width="700" height="210" rx="22" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+    <text x="855" y="220" font-size="23" font-weight="700" fill="#15803d">VIDEO JERIKEN</text>
+    <text x="855" y="275" font-size="34" font-weight="700" fill="#0f172a">1 track · label stabil</text>
+    <text x="855" y="320" font-size="20" fill="#334155">Final: other_plastic, dukungan vote 100%;</text>
+    <text x="855" y="350" font-size="20" fill="#334155">tidak lagi memicu rekomendasi sachet.</text>
+
+    <rect x="80" y="425" width="700" height="210" rx="22" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+    <text x="115" y="470" font-size="23" font-weight="700" fill="#15803d">VIDEO VERTIKAL</text>
+    <text x="115" y="525" font-size="34" font-weight="700" fill="#0f172a">15 → 6 track</text>
+    <text x="115" y="570" font-size="20" fill="#334155">Fragmentasi berkurang kuat dan sesuai enam objek</text>
+    <text x="115" y="600" font-size="20" fill="#334155">terdeteksi; cup/foam tetap di luar kemampuan model.</text>
+
+    <rect x="820" y="425" width="700" height="210" rx="22" fill="#fff7ed" stroke="#f97316" stroke-width="3"/>
+    <text x="855" y="470" font-size="23" font-weight="700" fill="#c2410c">VIDEO PADAT — STRESS TEST</text>
+    <text x="855" y="525" font-size="34" font-weight="700" fill="#0f172a">4 → 15 track indikatif</text>
+    <text x="855" y="570" font-size="20" fill="#334155">Sensitivitas meningkat, tetapi 9/15 track terlalu pendek.</text>
+    <text x="855" y="600" font-size="20" fill="#334155">TRACKING_UNSTABLE aktif; wajib verifikasi manusia.</text>
+  </g>
+
+  <rect x="80" y="690" width="1440" height="135" rx="20" fill="#fff1f2" stroke="#e11d48" stroke-width="3"/>
+  <text x="115" y="735" font-family="DejaVu Sans, Arial" font-size="24" font-weight="700" fill="#be123c">BATAS INTERPRETASI</text>
+  <text x="115" y="777" font-family="DejaVu Sans, Arial" font-size="21" fill="#334155">Empat media ini menunjukkan kemajuan lokal, bukan peningkatan akurasi umum. Dense scene belum andal untuk jumlah absolut.</text>
+
+  <text x="80" y="865" font-family="DejaVu Sans, Arial" font-size="17" fill="#64748b">Evidence: detection_tracking_stability_20260723.json · model 0.1.0-baseline.1 · detector config 1.2.0</text>
+</svg>
+

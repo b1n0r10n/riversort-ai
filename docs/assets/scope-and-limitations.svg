@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Scope dan keterbatasan model MVP RiverSort AI</title>
+  <desc id="desc">Empat kelas plastik didukung, debris nonplastik belum didukung, dan klaim fisik presisi berada di luar scope.</desc>
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <text x="80" y="80" font-family="DejaVu Sans, Arial" font-size="42" font-weight="700" fill="#0f172a">Capability model MVP</text>
+  <text x="80" y="123" font-family="DejaVu Sans, Arial" font-size="22" fill="#475569">Taksonomi target memiliki lima kelas; release aktif mendukung empat kelas plastik.</text>
+
+  <rect x="80" y="175" width="940" height="500" rx="24" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+  <text x="125" y="228" font-family="DejaVu Sans, Arial" font-size="25" font-weight="700" fill="#15803d">DIDUKUNG MODEL 0.1.0-baseline.1</text>
+  <g font-family="DejaVu Sans, Arial">
+    <rect x="125" y="275" width="390" height="115" rx="18" fill="#ffffff" stroke="#22c55e" stroke-width="2"/>
+    <circle cx="170" cy="332" r="17" fill="#16a34a"/>
+    <path d="M161 332 L168 339 L181 324" fill="none" stroke="#fff" stroke-width="5"/>
+    <text x="210" y="342" font-size="26" font-weight="700" fill="#0f172a">plastic_bottle</text>
+
+    <rect x="575" y="275" width="390" height="115" rx="18" fill="#ffffff" stroke="#22c55e" stroke-width="2"/>
+    <circle cx="620" cy="332" r="17" fill="#16a34a"/>
+    <path d="M611 332 L618 339 L631 324" fill="none" stroke="#fff" stroke-width="5"/>
+    <text x="660" y="342" font-size="26" font-weight="700" fill="#0f172a">plastic_bag</text>
+
+    <rect x="125" y="430" width="390" height="115" rx="18" fill="#ffffff" stroke="#22c55e" stroke-width="2"/>
+    <circle cx="170" cy="487" r="17" fill="#16a34a"/>
+    <path d="M161 487 L168 494 L181 479" fill="none" stroke="#fff" stroke-width="5"/>
+    <text x="210" y="476" font-size="23" font-weight="700" fill="#0f172a">plastic_packaging</text>
+    <text x="210" y="510" font-size="23" font-weight="700" fill="#0f172a">_sachet</text>
+
+    <rect x="575" y="430" width="390" height="115" rx="18" fill="#ffffff" stroke="#22c55e" stroke-width="2"/>
+    <circle cx="620" cy="487" r="17" fill="#16a34a"/>
+    <path d="M611 487 L618 494 L631 479" fill="none" stroke="#fff" stroke-width="5"/>
+    <text x="660" y="497" font-size="26" font-weight="700" fill="#0f172a">other_plastic</text>
+
+    <text x="125" y="615" font-size="21" fill="#334155">Komposisi dan priority hanya memakai empat kelas yang didukung.</text>
+  </g>
+
+  <rect x="1060" y="175" width="460" height="500" rx="24" fill="#fff7ed" stroke="#f97316" stroke-width="3"/>
+  <text x="1100" y="228" font-family="DejaVu Sans, Arial" font-size="25" font-weight="700" fill="#c2410c">BELUM DIDUKUNG</text>
+  <rect x="1100" y="275" width="380" height="135" rx="18" fill="#ffffff" stroke="#fb923c" stroke-width="2"/>
+  <text x="1290" y="326" text-anchor="middle" font-family="DejaVu Sans, Arial" font-size="23" font-weight="700" fill="#0f172a">other_floating_debris</text>
+  <text x="1290" y="367" text-anchor="middle" font-family="DejaVu Sans, Arial" font-size="20" fill="#c2410c">not_supported · metric null</text>
+  <text x="1100" y="460" font-family="DejaVu Sans, Arial" font-size="21" fill="#334155">Debris nonplastik dapat membuat</text>
+  <text x="1100" y="493" font-family="DejaVu Sans, Arial" font-size="21" fill="#334155">indeks lebih rendah daripada</text>
+  <text x="1100" y="526" font-family="DejaVu Sans, Arial" font-size="21" fill="#334155">kondisi lapangan.</text>
+  <text x="1100" y="590" font-family="DejaVu Sans, Arial" font-size="21" font-weight="700" fill="#9a3412">Verifikasi manusia wajib.</text>
+
+  <rect x="80" y="720" width="1440" height="115" rx="20" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+  <text x="800" y="765" text-anchor="middle" font-family="DejaVu Sans, Arial" font-size="24" font-weight="700" fill="#1d4ed8">Estimasi komposisi visual berdasarkan jumlah objek unik dan proporsi area deteksi.</text>
+  <text x="800" y="805" text-anchor="middle" font-family="DejaVu Sans, Arial" font-size="20" fill="#334155">Bukan estimasi berat, massa, tonase, volume fisik, atau ukuran bahaya absolut.</text>
+</svg>

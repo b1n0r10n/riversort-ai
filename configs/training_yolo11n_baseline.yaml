@@ -1,0 +1,38 @@
+contract_version: 1.0.0
+experiment_id: riversort-yolo11n-fpwr4-20260722-r2-baseline1
+snapshot_id: riversort_fpwr4-20260722-r2
+snapshot_tree_sha256_v1: 74badb41175aacef724f6b2c4db722ce46dcd6875546f9035472d60e46690b2c
+capability_profile_id: riversort_plastic4_mvp
+initial_model: yolo11n.pt
+model: yolo11n.pt
+imgsz: 640
+epochs: 100
+patience: 20
+batch: 8
+workers: 4
+device: 0
+seed: 42
+deterministic: true
+cache: false
+amp: true
+optimizer: auto
+hsv_h: 0.015
+hsv_s: 0.4
+hsv_v: 0.3
+degrees: 0.0
+translate: 0.1
+scale: 0.3
+shear: 0.0
+perspective: 0.0
+flipud: 0.0
+fliplr: 0.5
+mosaic: 0.5
+mixup: 0.0
+copy_paste: 0.0
+close_mosaic: 10
+evaluation:
+  confidence_grid: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50]
+  matching_iou: 0.50
+  warmup_images: 20
+  benchmark_images: 100
+  qualitative_river_trash_images: 50

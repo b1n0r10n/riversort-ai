@@ -1,0 +1,16 @@
+config_version: 1.2.0
+tracker: bytetrack
+analysis_fps: 5
+track_high_thresh: 0.40
+track_low_thresh: 0.10
+new_track_thresh: 0.40
+track_buffer: 30
+match_thresh: 0.80
+fuse_score: true
+minimum_observations: 2
+class_resolution: confidence_weighted_vote
+counting_unit: confirmed_unique_track
+class_vote_margin_threshold: 0.20
+stability_minimum_tracks: 3
+short_track_seconds: 1.0
+short_track_ratio_threshold: 0.50
