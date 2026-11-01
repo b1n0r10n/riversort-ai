@@ -1,25 +1,24 @@
 # RiverSort AI
 
-RiverSort AI adalah prototype *computer vision* untuk menganalisis gambar atau
-video pendek permukaan sungai. Aplikasi mendeteksi sampah plastik mengambang,
-menghitung komposisi visual, menyusun indeks prioritas pembersihan, dan
-memberikan rekomendasi berbasis aturan yang dapat ditelusuri.
+RiverSort AI is a computer vision prototype for analyzing images and short videos of river surfaces. It detects floating plastic waste, summarizes its visual composition, calculates a visual cleanup-priority index, and generates traceable, rule-based recommendations. The application is intended to support the review of visual observations; its outputs should not be interpreted as direct measurements of physical waste quantities.
 
-![Dashboard RiverSort AI](docs/assets/dashboard-upload.png)
+![RiverSort AI Dashboard](docs/assets/dashboard-upload.png)
 
-## Kemampuan
+## Capabilities
 
-- Analisis satu gambar JPEG/PNG atau video MP4 H.264.
-- Deteksi empat kelas plastik dengan YOLO11n.
-- Penghitungan objek unik pada video dengan ByteTrack dua tahap.
-- Normalisasi otomatis untuk media beresolusi tinggi.
-- Dua metrik komposisi: proporsi jumlah objek unik dan area deteksi.
-- Indeks prioritas visual yang memperlihatkan komponen perhitungannya.
-- Rekomendasi deterministik beserta nilai observasi dan ambang aturan.
-- Preview beranotasi serta ekspor JSON dan CSV.
-- Pemrosesan lokal tanpa layanan inferensi eksternal.
+RiverSort AI currently provides the following capabilities:
 
-Model aktif mendukung:
+- Analyze a single JPEG or PNG image, or an MP4 video encoded with H.264.
+- Detect four plastic-waste classes using YOLO11n.
+- Count unique objects in videos using a two-stage ByteTrack process.
+- Automatically normalize high-resolution media before analysis.
+- Calculate two visual-composition metrics: the proportion of unique objects and the proportion of detected area.
+- Produce a visual-priority index whose contributing components can be inspected.
+- Generate deterministic, rule-based recommendations together with the observed values and the thresholds used by the rules.
+- Display annotated previews and export analysis results in JSON and CSV formats.
+- Process media locally without relying on an external inference service.
+
+The active model supports the following four classes:
 
 ```text
 plastic_bottle
@@ -28,16 +27,21 @@ plastic_packaging_sachet
 other_plastic
 ```
 
-Taksonomi target juga memuat `other_floating_debris`. Kelas tersebut belum
-didukung model aktif dan dilaporkan sebagai `not_supported`, bukan `0%`.
+The target taxonomy also includes `other_floating_debris`. This class is not supported by the active model. It is therefore reported as `not_supported`, rather than being assigned a value of `0%`. This distinction is important: an unsupported class should not be interpreted as a class that was evaluated and found to be absent.
 
-## Instalasi
+## Installation
 
-Prasyarat:
+### Prerequisites
 
-- Python 3.11;
-- FFmpeg dan FFprobe;
-- Git.
+Make sure the following software is available:
+
+- Python 3.11
+- FFmpeg and FFprobe
+- Git
+
+### Set up the project
+
+Clone the repository, enter the project directory, create a virtual environment, and install the project with its development dependencies:
 
 ```bash
 git clone https://github.com/b1n0r10n/riversort-ai.git
@@ -49,84 +53,93 @@ python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
 ```
 
-Unduh model terverifikasi:
+### Download the model
+
+Download the verified model weights:
 
 ```bash
 python scripts/download_model.py
 export RIVERSORT_MODEL_PATH="$PWD/models/riversort-yolo11n-fpwr4-0.1.0-baseline.1.pt"
 ```
 
-Jalankan dashboard:
+### Start the dashboard
+
+Run the Streamlit application:
 
 ```bash
 streamlit run app.py
 ```
 
-Setelah model tersedia, aplikasi dapat digunakan tanpa koneksi internet.
-Panduan lengkap terdapat di [docs/USAGE.md](docs/USAGE.md).
+Once the model weights are available locally, the application can be used without an internet connection. For detailed instructions on setup, configuration, dashboard operation, and exports, see the [usage guide](docs/USAGE.md).
 
-## Alur analisis
+## Analysis workflow
+
+The analysis pipeline follows these main stages:
 
 ```mermaid
 flowchart LR
-    A[Unggah media] --> B[Validasi dan normalisasi]
-    B --> C[Deteksi YOLO11n]
-    C --> D{Jenis media}
-    D -->|Gambar| E[Agregasi deteksi]
-    D -->|Video| F[ByteTrack dua tahap]
-    E --> G[Komposisi visual]
+    A[Upload media] --> B[Validation and normalization]
+    B --> C[YOLO11n detection]
+    C --> D{Media type}
+    D -->|Image| E[Detection aggregation]
+    D -->|Video| F[Two-stage ByteTrack]
+    E --> G[Visual composition]
     F --> G
-    G --> H[Indeks prioritas]
-    H --> I[Rekomendasi berbasis aturan]
-    I --> J[Preview dan ekspor]
+    G --> H[Priority index]
+    H --> I[Rule-based recommendations]
+    I --> J[Preview and export]
 ```
 
-Pada gambar, satu deteksi valid dihitung sebagai satu objek. Pada video,
-deteksi antar-frame dihubungkan menjadi *track* sehingga satu objek yang sama
-tidak dihitung kembali pada setiap frame. Kelas akhir sebuah track ditentukan
-dengan *confidence-weighted vote* dan digunakan secara konsisten pada preview
-serta hasil agregasi.
+The aggregation process differs depending on the input media:
 
-## Model dan data
+- **Images:** Each valid detection is counted as one object.
+- **Videos:** Detections across frames are associated into tracks. This prevents the same object from being counted again in every frame in which it appears.
 
-Baseline menggunakan snapshot `riversort_fpwr4-20260722-r2` yang diturunkan
-dari Float Plastic Waste River v6:
+For each video track, the final class is determined using a *confidence-weighted vote*. That assigned class is then used consistently in both the annotated preview and the aggregated results.
 
-- 2.824 gambar dan 5.761 anotasi;
-- split *group-aware* 1.947 train, 437 validation, dan 440 test;
-- empat kelas plastik aktif;
-- tidak memiliki *negative sample*;
-- tidak memasukkan River Trash ke evaluasi numerik.
+## Model and data
 
-Model aktif adalah YOLO11n `0.1.0-baseline.1`. Pada held-out test FPWR dengan
-confidence `0,40` dan IoU `0,50`, model memperoleh mAP50 `0,6936` dan macro-F1
-`0,6904`. Nilai tersebut hanya menggambarkan evaluasi pada FPWR, bukan akurasi
-nasional atau semua kondisi sungai.
+The baseline model uses the `riversort_fpwr4-20260722-r2` snapshot, derived from Float Plastic Waste River v6. Its dataset and evaluation setup have the following characteristics:
 
-Lihat [model card](models/MODEL_CARD.md) dan
-[metodologi data](docs/DATA_AND_MODEL.md) untuk konteks lengkap.
+- 2,824 images and 5,761 annotations.
+- A *group-aware* split consisting of 1,947 training images, 437 validation images, and 440 test images.
+- Four active plastic-waste classes.
+- No negative samples in the dataset.
+- River Trash is not included in the numerical evaluation.
 
-## Struktur
+The active model is YOLO11n `0.1.0-baseline.1`. On the held-out FPWR test set, using a confidence threshold of `0.40` and an IoU threshold of `0.50`, it achieved:
+
+- mAP50: `0.6936`
+- Macro-F1: `0.6904`
+
+These metrics describe the model's performance on the FPWR test set under the stated evaluation settings. They should not be interpreted as evidence of national-level accuracy or as a guarantee of performance across different rivers, locations, or field conditions.
+
+For additional context, see the [model card](models/MODEL_CARD.md) and the [data and model methodology](docs/DATA_AND_MODEL.md).
+
+## Project structure
+
+The repository is organized into the following main directories and files:
 
 ```text
-app.py                         entry point Streamlit
-src/riversort/domain/          kontrak, metrik, dan aturan bisnis
-src/riversort/application/     orkestrasi analisis gambar dan video
-src/riversort/adapters/        YOLO, OpenCV, ByteTrack, FFmpeg, dan ekspor
-src/riversort/infrastructure/  konfigurasi, logging, runtime, dan workspace
-src/riversort/presentation/    dashboard Streamlit
-configs/                       konfigurasi model, tracker, media, dan aturan
-scripts/                       pipeline data/model serta utilitas rilis
-tests/                         unit dan integration tests
-docs/                          dokumentasi produk dan teknis
-models/                        model card; weight diunduh terpisah
-reports/                       ringkasan evaluasi dan snapshot
+app.py                         Streamlit application entry point
+src/riversort/domain/          contracts, metrics, and business rules
+src/riversort/application/     image and video analysis orchestration
+src/riversort/adapters/        YOLO, OpenCV, ByteTrack, FFmpeg, and export adapters
+src/riversort/infrastructure/  configuration, logging, runtime, and workspace
+src/riversort/presentation/    Streamlit dashboard
+configs/                       model, tracker, media, and rule configurations
+scripts/                       data and model pipelines, plus release utilities
+tests/                         unit and integration tests
+docs/                          product and technical documentation
+models/                        model card; model weights are downloaded separately
+reports/                       evaluation summaries and snapshots
 ```
 
-RiverSort AI menggunakan arsitektur *modular monolith*: satu aplikasi lokal
-dengan batas dependensi yang jelas antara domain, orkestrasi, adapter, dan UI.
+RiverSort AI follows a *modular monolith* architecture. It is implemented as a single local application, with defined dependency boundaries between the domain layer, application orchestration, adapters, and user interface. This structure separates the main responsibilities of the application without presenting them as independently deployed services.
 
-## Pengujian
+## Testing
+
+Run the following commands from the project root:
 
 ```bash
 python -m pytest -q
@@ -134,43 +147,41 @@ python -m pip check
 python scripts/release/audit_public_repository.py
 ```
 
-Test mencakup kontrak data, konfigurasi, validasi media, komposisi, prioritas,
-rekomendasi, tracking, ekspor, cleanup workspace, dan smoke test dashboard.
+The test suite covers data contracts, configuration, media validation, visual composition, priority calculations, recommendations, tracking, exports, workspace cleanup, and a dashboard smoke test.
 
-## Batas penggunaan
+## Intended use and limitations
 
-RiverSort AI adalah alat bantu keputusan, bukan alat ukur fisik dan bukan
-sistem pembersihan otomatis.
+RiverSort AI is a decision-support tool. It is not a physical measurement instrument and does not perform automated river cleanup.
 
-> **Estimasi komposisi visual berdasarkan jumlah objek unik dan proporsi area
-> deteksi.**
+> **Visual composition estimates based on unique-object counts and the proportion of detected area.**
 
-Hasil tidak menyatakan berat, massa, tonase, atau volume fisik. Model dapat
-menghasilkan *false positive* dan *false negative*, terutama pada objek kecil,
-tertutup, atau adegan padat. Debris nonplastik belum didukung sehingga indeks
-prioritas dapat lebih rendah daripada kondisi lapangan. Verifikasi manusia
-tetap diperlukan sebelum tindakan pembersihan.
+The results do not represent the physical weight, mass, tonnage, or volume of waste. The model may produce *false positives* and *false negatives*, particularly for small or partially occluded objects and in visually dense scenes.
 
-## Dokumentasi
+Non-plastic debris is not currently supported by the active model. As a result, the priority index may be lower than what the actual field conditions would suggest. Human review and verification are still required before cleanup actions are taken.
 
-| Dokumen | Isi |
+These limitations should be considered when interpreting the analysis and using its recommendations.
+
+## Documentation
+
+The following documents provide additional information about the project:
+
+| Document | Description |
 |---|---|
-| [PRODUCT.md](docs/PRODUCT.md) | Masalah, pengguna, tujuan, scope, dan requirement |
-| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Arsitektur, aliran data, tracking, serta aturan bisnis |
-| [DATA_AND_MODEL.md](docs/DATA_AND_MODEL.md) | Dataset, snapshot, training, dan model |
-| [EVALUATION.md](docs/EVALUATION.md) | Metrik, pengujian, failure modes, dan interpretasi |
-| [USAGE.md](docs/USAGE.md) | Instalasi, konfigurasi, dashboard, dan ekspor |
-| [ROADMAP.md](docs/ROADMAP.md) | Arah pengembangan dan validation gates |
-| [DECISIONS.md](docs/DECISIONS.md) | Keputusan produk dan teknis yang aktif |
+| [PRODUCT.md](docs/PRODUCT.md) | Problem context, intended users, objectives, scope, and requirements |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Application architecture, data flow, tracking process, and business rules |
+| [DATA_AND_MODEL.md](docs/DATA_AND_MODEL.md) | Dataset, data snapshot, training process, and model details |
+| [EVALUATION.md](docs/EVALUATION.md) | Evaluation metrics, tests, failure modes, and interpretation |
+| [USAGE.md](docs/USAGE.md) | Installation, configuration, dashboard usage, and exports |
+| [ROADMAP.md](docs/ROADMAP.md) | Development direction and validation gates |
+| [DECISIONS.md](docs/DECISIONS.md) | Current product and technical decisions |
 
-## Tim
+## Team
 
-- Bintang Akalla Junjunan — product, application, dan machine learning
-- Nisa Setiawati — research, validation, dan communication
+- **Bintang Akalla Junjunan** — Product, application development, and machine learning
+- **Nisa Setiawati** — Research, validation, and communication
 
-## Lisensi
+## License
 
-Source code dan model RiverSort AI tersedia di bawah
-[GNU Affero General Public License v3.0 or later](LICENSE). Dataset FPWR tetap
-mengikuti lisensi CC BY 4.0 dari pemiliknya. Rincian atribusi terdapat di
-[NOTICE.md](NOTICE.md).
+The RiverSort AI source code and model are made available under the [GNU Affero General Public License v3.0 or later](LICENSE).
+
+The FPWR dataset remains subject to the CC BY 4.0 license granted by its owner. Further attribution details are provided in [NOTICE.md](NOTICE.md).
